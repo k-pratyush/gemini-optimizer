@@ -13,8 +13,8 @@ def opro():
   pass
 
 def main(*args, **kwargs):
-  w_true = 15
-  b_true = 14
+  w_true = 25
+  b_true = 23
 
   # load LLM settings
   optimizer_llm_name = optimization_config["model"]

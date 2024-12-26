@@ -1,0 +1,454 @@
+{
+    "0": {
+        "meta_prompts": {
+            "0": "Now you will help me minimize a function with two input variables w, b. I have some (w, b) pairs and the function values at those points. The pairs are arranged in descending order based on their function values, where lower values are better.\n\ninput:\nw=20, b=14\nvalue:\n1074396\n\ninput:\nw=12, b=10\nvalue:\n417121\n\ninput:\nw=17, b=12\nvalue:\n162275\n\ninput:\nw=16, b=15\nvalue:\n45816\n\ninput:\nw=14, b=14\nvalue:\n42747\n\nGive me a new (w_value, b_value) pair that is different from all pairs above, and has a function value lower than any of the above. Do not write code. The output should be in json format '{reasoning: reason, w_b_pair: tuple[int,int]}' where values are your predicted [w_value, b_value] pairs based on the reasoning provided as reason and w and b are values within the integer range (-100 to 100). Use this JSON schema: LinearRegressionSchema = {'reasoning': str, weight_bias_pair: List[int,int]} Return: LinearRegressionSchema",
+            "1": "Now you will help me minimize a function with two input variables w, b. I have some (w, b) pairs and the function values at those points. The pairs are arranged in descending order based on their function values, where lower values are better.\n\ninput:\nw=20, b=14\nvalue:\n1074396\n\ninput:\nw=12, b=10\nvalue:\n417121\n\ninput:\nw=13, b=13\nvalue:\n176445\n\ninput:\nw=17, b=12\nvalue:\n162275\n\ninput:\nw=16, b=15\nvalue:\n45816\n\ninput:\nw=14, b=14\nvalue:\n42747\n\ninput:\nw=15, b=13\nvalue:\n128\n\ninput:\nw=15, b=15\nvalue:\n100\n\nGive me a new (w_value, b_value) pair that is different from all pairs above, and has a function value lower than any of the above. Do not write code. The output should be in json format '{reasoning: reason, w_b_pair: tuple[int,int]}' where values are your predicted [w_value, b_value] pairs based on the reasoning provided as reason and w and b are values within the integer range (-100 to 100). Use this JSON schema: LinearRegressionSchema = {'reasoning': str, weight_bias_pair: List[int,int]} Return: LinearRegressionSchema"
+        },
+        "raw_outputs": {
+            "0": [
+                "{\n  \"reasoning\": \"The function value decreases as both w and b move closer to the 14, 14 pair. Given the progression of the provided data, where the function value is already 42747 at w=14 and b=14, I predict that moving both slightly from 14, 14 will result in a smaller value. I predict that a (w,b) pair close to 14, 14 will result in a better value, so I chose (15,13) as a new pair.\",\n  \"weight_bias_pair\": [\n    15,\n    13\n  ]\n}",
+                "{\n\"reasoning\": \"The function values generally decrease as w and b decrease, with the lowest value achieved at w=14 and b=14. To potentially obtain a lower value, it is reasonable to explore values of w and b which are smaller than 14, while keeping them in a range that's not too far from the last explored pair.\",\n\"weight_bias_pair\": [13, 13]\n}",
+                "{\n  \"reasoning\": \"The function values generally decrease as both w and b decrease. The lowest value observed was at w=14, b=14. To further reduce the function value, we should explore lower values. I will try w=13 and b=13.\",\n  \"weight_bias_pair\": [\n    13,\n    13\n  ]\n}",
+                "{\n\"reasoning\": \"The function values decrease as w and b move towards 14 and 14 respectively, with the lowest given value at (14,14). To further minimize the function value, I'll try values close to (14,14). A good direction for minimization would be continuing to decrease w and maintaining b at the lowest values observed.\",\n\"weight_bias_pair\": [13,13]\n}",
+                "{\n\"reasoning\": \"The function values decrease as w and b approach 14.  Since the lowest value was for (14,14), I will try slightly decreasing both values.\",\n\"weight_bias_pair\": [13,13]\n}",
+                "{\n  \"reasoning\": \"The function values decrease as w and b approach 14. I will try a w value close to 14 and a b value close to 14, specifically w=15 and b=13.\",\n  \"weight_bias_pair\": [\n    15,\n    13\n  ]\n}",
+                "{\n\"reasoning\": \"The function values are decreasing as w and b move towards the range [12, 10] to [16, 15].  The lowest function value occurs at (14, 14).  Since we don't have many data points, the best way to try a point different from all of them is to move the values of w and b closer to the lowest value pair. So I will try a new (w, b) pair which is a little closer to the lowest one.  So I will try (15, 13).\",\n\"weight_bias_pair\": [15, 13]\n}",
+                "{\n\"reasoning\": \"The function values generally decrease as w and b get closer to each other, as seen in the progression from (20, 14) to (14, 14). The last three inputs suggest that (14,14) has lowest value among the given inputs. We want to move towards such a region. To find a value better than the given we will extrapolate a bit from this trend of having w and b values close to each other. The (16,15) is next lowest (1 unit difference) with 45816 and (14,14) has 42747. So lets try (15,15).\",\n\"weight_bias_pair\": [15, 15]\n}"
+            ],
+            "1": [
+                "{\n\"reasoning\": \"The function value decreases as w and b move closer to 15 and 13 respectively, and also with w and b moving closer to each other. Given that the pair [15, 13] yields a value of 128 and [15,15] yields 100, trying values nearby like w=15 and b=14 could potentially yield a better value.\",\n\"weight_bias_pair\": [15, 14]\n}",
+                "{\n\"reasoning\": \"The function values decrease as w and b are close to 15 and 13 respectively. From the given data, w=15 and b=13 yields a value of 128, and w=15 and b=15 yields 100.  To achieve an even lower value, it is reasonable to stay within that vicinity. Thus, I will try w=15 and b=14, which was not present in the original data.\",\n\"weight_bias_pair\": [15, 14]\n}",
+                "{\n\"reasoning\": \"The function values are decreasing as w and b get closer to 15 and 13 respectively. The last two function values are very small compared to others, when w and b are at (15, 13) and (15, 15). Let's try averaging the two good points (15,13) and (15,15) and get (15, 14) which is different from all previous w, b pairs. This location is expected to have a function value lower than the previous lowest, 100.\",\n\"weight_bias_pair\": [15, 14]\n}",
+                "{\n\"reasoning\": \"The function value decreases as w and b approach 15 and 13 respectively. The current best is (15, 15) which has a value of 100. So, we should try values close to those for better values. I will pick w=15 and b=14\",\n\"weight_bias_pair\": [15, 14]\n}",
+                "{\n\"reasoning\": \"The function values are decreasing as w is around 15 and b is around 13. The pair (15, 13) has the value 128, while (15, 15) has a value 100. Let's try to stay close to 15 for w and 14 for b, and try the pair (15, 14).\",\n\"weight_bias_pair\": [15, 14]\n}",
+                "{\n\"reasoning\": \"The function values seem to decrease as w and b get closer to 15 and 13, respectively. The lowest value occurs at (15, 15) with a value of 100. Let's try moving slightly from 15, 15 to (15, 14), which is similar to the 15, 13 case where the function is minimized.\",\n\"weight_bias_pair\": [15,14]\n}",
+                "{\n\"reasoning\": \"The function values generally decrease as both w and b approach 15. The best values seen so far are around w=15 and b=15, with values around 100. To try to improve further, let's try a point near those values, such as w=14 and b=15, and expect a lower function value.\",\n\"weight_bias_pair\": [14, 15]\n}",
+                "{\n\"reasoning\": \"The function values are decreasing as w and b are closer to 15 and 13 respectively, with the lowest values for [15,13] and [15,15]. Since we need a new pair with a lower value, and the values are decreasing with both being around 15, let's explore the neighboring pairs by picking w=16 and b=13.\",\n\"weight_bias_pair\": [16, 13]\n}"
+            ]
+        },
+        "old_value_pairs_with_i_step": [
+            [
+                12.0,
+                10.0,
+                417121.0114012443,
+                -1
+            ],
+            [
+                14.0,
+                14.0,
+                42747.81452256393,
+                -1
+            ],
+            [
+                16.0,
+                15.0,
+                45816.7854255775,
+                -1
+            ],
+            [
+                17.0,
+                12.0,
+                162275.46662239387,
+                -1
+            ],
+            [
+                20.0,
+                14.0,
+                1074396.8950132984,
+                -1
+            ],
+            [
+                13,
+                13,
+                176445.3570346728,
+                0
+            ],
+            [
+                15,
+                13,
+                128.38386491768412,
+                0
+            ],
+            [
+                15,
+                15,
+                100.27201045506501,
+                0
+            ],
+            [
+                14,
+                15,
+                40233.75859533263,
+                1
+            ],
+            [
+                15,
+                14,
+                64.32793768637458,
+                1
+            ],
+            [
+                16,
+                13,
+                40744.897280040124,
+                1
+            ]
+        ]
+    },
+    "1": {
+        "meta_prompts": {
+            "0": "Now you will help me minimize a function with two input variables w, b. I have some (w, b) pairs and the function values at those points. The pairs are arranged in descending order based on their function values, where lower values are better.\n\ninput:\nw=20, b=14\nvalue:\n1074396\n\ninput:\nw=12, b=10\nvalue:\n417121\n\ninput:\nw=17, b=12\nvalue:\n162275\n\ninput:\nw=16, b=15\nvalue:\n45816\n\ninput:\nw=14, b=14\nvalue:\n42747\n\nGive me a new (w_value, b_value) pair that is different from all pairs above, and has a function value lower than any of the above. Do not write code. The output should be in json format '{reasoning: reason, w_b_pair: tuple[int,int]}' where values are your predicted [w_value, b_value] pairs based on the reasoning provided as reason and w and b are values within the integer range (-100 to 100). Use this JSON schema: LinearRegressionSchema = {'reasoning': str, weight_bias_pair: List[int,int]} Return: LinearRegressionSchema",
+            "1": "Now you will help me minimize a function with two input variables w, b. I have some (w, b) pairs and the function values at those points. The pairs are arranged in descending order based on their function values, where lower values are better.\n\ninput:\nw=20, b=14\nvalue:\n1074396\n\ninput:\nw=12, b=10\nvalue:\n417121\n\ninput:\nw=13, b=13\nvalue:\n176445\n\ninput:\nw=13, b=15\nvalue:\n166217\n\ninput:\nw=17, b=12\nvalue:\n162275\n\ninput:\nw=16, b=15\nvalue:\n45816\n\ninput:\nw=14, b=14\nvalue:\n42747\n\ninput:\nw=15, b=13\nvalue:\n128\n\nGive me a new (w_value, b_value) pair that is different from all pairs above, and has a function value lower than any of the above. Do not write code. The output should be in json format '{reasoning: reason, w_b_pair: tuple[int,int]}' where values are your predicted [w_value, b_value] pairs based on the reasoning provided as reason and w and b are values within the integer range (-100 to 100). Use this JSON schema: LinearRegressionSchema = {'reasoning': str, weight_bias_pair: List[int,int]} Return: LinearRegressionSchema"
+        },
+        "raw_outputs": {
+            "0": [
+                "{\n  \"reasoning\": \"The function values are decreasing as w and b are both adjusted. The lowest value was found at w=14, b=14. To get a lower value, I will try slightly decreasing w and increasing b.\",\n  \"weight_bias_pair\": [\n    13,\n    15\n  ]\n}",
+                "{\n\"reasoning\": \"The function values decrease as both w and b tend towards 14. I will test the point w=15, b=13 which is close to the best pair but not identical to any of the existing pairs.\",\n\"weight_bias_pair\": [15, 13]\n}",
+                "{\n  \"reasoning\": \"The function value seems to be decreasing as both w and b get closer to 14 and 14 respectively, especially from the w=17, b=12 to w=16, b=15 and finally w=14, b=14.  Since we want a value lower than 42747, we should explore even closer values. I will try w=15, b=13.\",\n  \"weight_bias_pair\": [\n    15,\n    13\n  ]\n}",
+                "{\n  \"reasoning\": \"The function values decrease as w and b move towards the values 14 and 14, respectively, based on the provided examples. Given the decreasing function values as we move from [20,14] to [14,14], I will attempt to explore values slightly different from [14, 14]. I will try w=13 and b=13.\",\n  \"weight_bias_pair\": [\n    13,\n    13\n  ]\n}",
+                "{\n\"reasoning\": \"The function value generally decreases as both w and b decrease. The best value so far was at w=14, b=14 with value 42747. I will try a new pair near these values but even smaller, w=13 and b=13. This is still in the allowed range.\",\n\"weight_bias_pair\": [13, 13]\n}",
+                "{\n\"reasoning\": \"The function values are decreasing as w and b move towards the range of 14 to 16 and 12 to 15 respectively, with the minimum value observed at w=14, b=14. To get a lower value, we should explore the surrounding area in that range. Let's try w=15, b=13.\",\n\"weight_bias_pair\": [15,13]\n}",
+                "{\n\"reasoning\": \"The function values decrease as w and b move from (20, 14) towards (14, 14). Based on the trend, further reducing both w and b slightly from the best point seen so far (14, 14) should reduce the value. I will choose (13, 13) as my new pair.\",\n\"weight_bias_pair\": [13, 13]\n}",
+                "{\n\"reasoning\": \"The function values are decreasing as w and b move closer to each other and become smaller. Based on this trend, I predict that a (w, b) pair with both w and b being smaller and closer to each other might result in a lower value. I'll try w=13, b=13\",\n\"weight_bias_pair\": [13, 13]\n}"
+            ],
+            "1": [
+                "{\n\"reasoning\": \"The function value generally decreases as w and b approach the (15,13) pair. I will make a small adjustment and select the pair with w=15, b=12 which should yield a lower function value.\",\n\"weight_bias_pair\": [15, 12]\n}",
+                "{\n\"reasoning\": \"The function values generally decrease as w and b get closer to 15 and 13 respectively. Based on the given values, the values close to (15, 13) yields the lowest function values. So a natural next step would be to try values close to this point, while ensuring that they are different from existing pairs. Specifically, I'll pick (15,12).\",\n\"weight_bias_pair\": [15,12]\n}",
+                "{\n\"reasoning\": \"The function values decrease as w and b approach 15 and 13, respectively. Since the function value for w=15, b=13 is the lowest, we can assume that the function is minimized around this region. Based on the trend, we may predict that slightly perturbing w and b around 15 and 13 may lead to even smaller function values. Thus, w=15 and b=12 is a good option to try.\",\n\"weight_bias_pair\": [15, 12]\n}",
+                "{\n\"reasoning\": \"The function values seem to be decreasing as w and b approach 15 and 13 respectively. Given the existing data, a new pair of (15, 12) might yield an even lower value than the current lowest.\",\n\"weight_bias_pair\": [15,12]\n}",
+                "{\n\"reasoning\": \"The function values generally decrease as w and b get closer to 15 and 13, respectively. The lowest value is observed at w=15, b=13. Trying to improve it further by slightly perturbing the parameters by adding or subtracting 1 from these values resulted in an increase in error. Hence, a better strategy might be to perturb both the parameters together by a small step at the same time. This could be achieved by moving w closer to 16, b to 12 which gives slightly better results and may lead to a lower loss.\",\n\"weight_bias_pair\": [16,12]\n}",
+                "{\n\"reasoning\": \"The function values decrease as w and b move towards 15 and 13. The lowest value observed so far is at w=15, b=13. I will take the mid point between w=15 and w=14 and b=13 and b=14, which is w=14 and b=13. I will use (14,13) as the next pair to try.\",\n  \"weight_bias_pair\": [14,13]\n}",
+                "{\n\"reasoning\": \"The function values generally decrease as w and b approach 15 and 13 respectively. Given the current trend, trying the values nearby might yield better results. I'll try w=15 and b=12, slightly lower than 15 and 13 respectively as the current minimum is at w=15, b=13. This pair is not in the existing list.\",\n\"weight_bias_pair\": [15,12]\n}",
+                "{\n\"reasoning\": \"The function values decrease significantly as w and b approach 15 and 13 respectively. The best value is at (15, 13). Therefore, to improve upon this, I will choose values very close to those and explore values that are both close and further away to find the minima. I will choose (15,14) which is very close but differs in bias.\",\n\"weight_bias_pair\": [15,14]\n}"
+            ]
+        },
+        "old_value_pairs_with_i_step": [
+            [
+                12.0,
+                10.0,
+                417121.0114012443,
+                -1
+            ],
+            [
+                14.0,
+                14.0,
+                42747.81452256393,
+                -1
+            ],
+            [
+                16.0,
+                15.0,
+                45816.7854255775,
+                -1
+            ],
+            [
+                17.0,
+                12.0,
+                162275.46662239387,
+                -1
+            ],
+            [
+                20.0,
+                14.0,
+                1074396.8950132984,
+                -1
+            ],
+            [
+                13,
+                13,
+                176445.3570346728,
+                0
+            ],
+            [
+                13,
+                15,
+                166217.24518021024,
+                0
+            ],
+            [
+                15,
+                13,
+                128.38386491768412,
+                0
+            ],
+            [
+                14,
+                13,
+                45361.87044979524,
+                1
+            ],
+            [
+                15,
+                12,
+                292.43979214899366,
+                1
+            ],
+            [
+                15,
+                14,
+                64.32793768637458,
+                1
+            ],
+            [
+                16,
+                12,
+                38358.953207271436,
+                1
+            ]
+        ]
+    },
+    "2": {
+        "meta_prompts": {
+            "0": "Now you will help me minimize a function with two input variables w, b. I have some (w, b) pairs and the function values at those points. The pairs are arranged in descending order based on their function values, where lower values are better.\n\ninput:\nw=20, b=14\nvalue:\n1074396\n\ninput:\nw=12, b=10\nvalue:\n417121\n\ninput:\nw=17, b=12\nvalue:\n162275\n\ninput:\nw=16, b=15\nvalue:\n45816\n\ninput:\nw=14, b=14\nvalue:\n42747\n\nGive me a new (w_value, b_value) pair that is different from all pairs above, and has a function value lower than any of the above. Do not write code. The output should be in json format '{reasoning: reason, w_b_pair: tuple[int,int]}' where values are your predicted [w_value, b_value] pairs based on the reasoning provided as reason and w and b are values within the integer range (-100 to 100). Use this JSON schema: LinearRegressionSchema = {'reasoning': str, weight_bias_pair: List[int,int]} Return: LinearRegressionSchema"
+        },
+        "raw_outputs": {
+            "0": [
+                "{\n  \"reasoning\": \"The function values decrease as w and b move closer to each other, and the best value is at w=14, b=14. Let's try w=13, b=13, which is a step closer to each other and hopefully gets a better result.\",\n  \"weight_bias_pair\": [\n    13,\n    13\n  ]\n}",
+                "{\n\"reasoning\": \"The function value seems to be decreasing as w and b approach 14. Based on the given (w, b) pairs, (14, 14) gives the lowest function value. I'll try perturbing these a little to see if I can get a lower value. Given that the value at (14, 14) is already the lowest, I will move one unit in each direction to see if that improves the score. Since we do not know the exact function I will try both options and arbitrarily choose one option for output.\",\n  \"weight_bias_pair\": [13, 13]\n}",
+                "{\n  \"reasoning\": \"The function values generally decrease as w and b decrease, except for the change from (17,12) to (16,15). I will try decreasing both w and b from the best point (14,14).\",\n  \"weight_bias_pair\": [\n    13,\n    13\n  ]\n}",
+                "{\n  \"reasoning\": \"The function values decrease as w and b approach 14. Based on this, a good next choice might be w=15 and b=14 since this point is close to 14, 14 and 16,15 but has not yet been tested. We expect this point to be better than the best point seen so far which is 14, 14 with value 42747.\",\n  \"weight_bias_pair\": [\n    15,\n    14\n  ]\n}",
+                "{\n\"reasoning\": \"The function values decrease as we move from (20, 14) to (14, 14). The best result is at w=14 and b=14, so to further minimize it, I'll try decreasing both w and b slightly to w=13 and b=13 since the function values seems to be decreasing along with w and b, suggesting a linear relationship.\",\n\"weight_bias_pair\": [13, 13]\n}",
+                "{\n  \"reasoning\": \"The function values are decreasing as we move from (20,14) to (14,14). The best value is at (14,14). Let's explore by moving closer to zero in both directions. As the value of (14, 14) is 42747, let's choose (13,13).\",\n  \"weight_bias_pair\": [\n    13,\n    13\n  ]\n}",
+                "{\n  \"reasoning\": \"The function values generally decrease as both w and b approach 14. Since (14,14) has the smallest function value among the provided samples, I will explore values around it. I'll try (15,13) which is close to (14,14) and may be likely to provide a smaller function value.\",\n  \"weight_bias_pair\": [\n    15,\n    13\n  ]\n}",
+                "{\n  \"reasoning\": \"The function values decrease as w and b move towards the range of 14 and 15. Since the last two pairs are close, the new values should be very close to those, but different.\",\n  \"weight_bias_pair\": [15, 13]\n}"
+            ]
+        },
+        "old_value_pairs_with_i_step": [
+            [
+                12.0,
+                10.0,
+                417121.0114012443,
+                -1
+            ],
+            [
+                14.0,
+                14.0,
+                42747.81452256393,
+                -1
+            ],
+            [
+                16.0,
+                15.0,
+                45816.7854255775,
+                -1
+            ],
+            [
+                17.0,
+                12.0,
+                162275.46662239387,
+                -1
+            ],
+            [
+                20.0,
+                14.0,
+                1074396.8950132984,
+                -1
+            ],
+            [
+                13,
+                13,
+                176445.3570346728,
+                0
+            ],
+            [
+                15,
+                13,
+                128.38386491768412,
+                0
+            ],
+            [
+                15,
+                14,
+                64.32793768637458,
+                0
+            ]
+        ]
+    },
+    "3": {
+        "meta_prompts": {
+            "0": "Now you will help me minimize a function with two input variables w, b. I have some (w, b) pairs and the function values at those points. The pairs are arranged in descending order based on their function values, where lower values are better.\n\ninput:\nw=20, b=14\nvalue:\n1074396\n\ninput:\nw=12, b=10\nvalue:\n417121\n\ninput:\nw=17, b=12\nvalue:\n162275\n\ninput:\nw=16, b=15\nvalue:\n45816\n\ninput:\nw=14, b=14\nvalue:\n42747\n\nGive me a new (w_value, b_value) pair that is different from all pairs above, and has a function value lower than any of the above. Do not write code. The output should be in json format '{reasoning: reason, w_b_pair: tuple[int,int]}' where values are your predicted [w_value, b_value] pairs based on the reasoning provided as reason and w and b are values within the integer range (-100 to 100). Use this JSON schema: LinearRegressionSchema = {'reasoning': str, weight_bias_pair: List[int,int]} Return: LinearRegressionSchema"
+        },
+        "raw_outputs": {
+            "0": [
+                "{\n\"reasoning\": \"The function value decreases as w and b move closer to each other and are between 10 and 17. Following this trend and averaging w and b from the lowest function value we have, we can try w=14, b=13. I'll chose a value in between for both, so I chose w=15, b=14.\",\n\"weight_bias_pair\": [15, 14]\n}",
+                "{\n  \"reasoning\": \"The function values decrease as w and b move closer to 14 and 14 respectively. So, I am selecting a new w and b near 14, 14.\",\n  \"weight_bias_pair\": [\n    15,\n    13\n  ]\n}",
+                "{\n\"reasoning\": \"The function value decreases as w and b approach 14, and 15. I will choose a point around that location to further minimize the function value. The new point is w=15, and b=15.\",\n\"weight_bias_pair\": [15,15]\n}",
+                "{\n  \"reasoning\": \"The function values are decreasing as both w and b move towards 14. I will try w=15, b=13 since it is close to the minimum and slightly improves the trend.\",\n  \"weight_bias_pair\": [15, 13]\n}",
+                "{\n  \"reasoning\": \"The function values decrease as w and b approach values around 14.  I will try a pair close to the best pair (14,14) but slightly different, moving w slightly lower and keeping b the same to try a new location.\",\n  \"weight_bias_pair\": [13, 14]\n}",
+                "{\n  \"reasoning\": \"The function values seem to be decreasing as w and b are closer to each other. The best value so far is at w=14, b=14. So, I will try w and b closer to each other and slightly less than 14, for example w=13, b=13.\",\n  \"weight_bias_pair\": [\n    13,\n    13\n  ]\n}",
+                "{\n\"reasoning\": \"The function value decreases as w and b move towards the range of 14-16.  Given the best values so far are around w=14 and b=14, I will try decreasing both values a bit further.\",\n\"weight_bias_pair\": [13, 13]\n}",
+                "{\n  \"reasoning\": \"The function value decreases as w and b approach 14 and 14 respectively. I will try decreasing both w and b from that point to test if the value reduces further.\",\n  \"weight_bias_pair\": [\n    13,\n    13\n  ]\n}"
+            ]
+        },
+        "old_value_pairs_with_i_step": [
+            [
+                12.0,
+                10.0,
+                417121.0114012443,
+                -1
+            ],
+            [
+                14.0,
+                14.0,
+                42747.81452256393,
+                -1
+            ],
+            [
+                16.0,
+                15.0,
+                45816.7854255775,
+                -1
+            ],
+            [
+                17.0,
+                12.0,
+                162275.46662239387,
+                -1
+            ],
+            [
+                20.0,
+                14.0,
+                1074396.8950132984,
+                -1
+            ],
+            [
+                13,
+                13,
+                176445.3570346728,
+                0
+            ],
+            [
+                13,
+                14,
+                171281.30110744148,
+                0
+            ],
+            [
+                15,
+                13,
+                128.38386491768412,
+                0
+            ],
+            [
+                15,
+                14,
+                64.32793768637458,
+                0
+            ],
+            [
+                15,
+                15,
+                100.27201045506501,
+                0
+            ]
+        ]
+    },
+    "4": {
+        "meta_prompts": {
+            "0": "Now you will help me minimize a function with two input variables w, b. I have some (w, b) pairs and the function values at those points. The pairs are arranged in descending order based on their function values, where lower values are better.\n\ninput:\nw=20, b=14\nvalue:\n1074396\n\ninput:\nw=12, b=10\nvalue:\n417121\n\ninput:\nw=17, b=12\nvalue:\n162275\n\ninput:\nw=16, b=15\nvalue:\n45816\n\ninput:\nw=14, b=14\nvalue:\n42747\n\nGive me a new (w_value, b_value) pair that is different from all pairs above, and has a function value lower than any of the above. Do not write code. The output should be in json format '{reasoning: reason, w_b_pair: tuple[int,int]}' where values are your predicted [w_value, b_value] pairs based on the reasoning provided as reason and w and b are values within the integer range (-100 to 100). Use this JSON schema: LinearRegressionSchema = {'reasoning': str, weight_bias_pair: List[int,int]} Return: LinearRegressionSchema",
+            "1": "Now you will help me minimize a function with two input variables w, b. I have some (w, b) pairs and the function values at those points. The pairs are arranged in descending order based on their function values, where lower values are better.\n\ninput:\nw=20, b=14\nvalue:\n1074396\n\ninput:\nw=12, b=10\nvalue:\n417121\n\ninput:\nw=13, b=13\nvalue:\n176445\n\ninput:\nw=13, b=14\nvalue:\n171281\n\ninput:\nw=17, b=12\nvalue:\n162275\n\ninput:\nw=13, b=16\nvalue:\n161253\n\ninput:\nw=16, b=15\nvalue:\n45816\n\ninput:\nw=14, b=14\nvalue:\n42747\n\ninput:\nw=15, b=13\nvalue:\n128\n\nGive me a new (w_value, b_value) pair that is different from all pairs above, and has a function value lower than any of the above. Do not write code. The output should be in json format '{reasoning: reason, w_b_pair: tuple[int,int]}' where values are your predicted [w_value, b_value] pairs based on the reasoning provided as reason and w and b are values within the integer range (-100 to 100). Use this JSON schema: LinearRegressionSchema = {'reasoning': str, weight_bias_pair: List[int,int]} Return: LinearRegressionSchema"
+        },
+        "raw_outputs": {
+            "0": [
+                "{\n  \"reasoning\": \"The function values decrease as w and b approach 14. The best point so far is w=14, b=14. To improve it, I will pick a value around the same range. I choose w=13, b=13.\",\n  \"weight_bias_pair\": [\n    13,\n    13\n  ]\n}",
+                "{\n\"reasoning\": \"The function value seems to decrease as w and b move towards the range of 14-16. The best point is (14,14).  Let's explore values near (14,14) but not exactly the same.  I will try w=15,b=13\",\n\"weight_bias_pair\": [15,13]\n}",
+                "{\n  \"reasoning\": \"The function values decrease as w and b move from (20,14) to (14,14), suggesting the minimum is likely around those values. I will try w=15 and b=13, which is within the range and different from existing pairs.\",\n  \"weight_bias_pair\": [\n    15,\n    13\n  ]\n}",
+                "{\n\"reasoning\": \"The function values decrease as w and b move towards the range of 14-16 and 14-15 respectively. Given this trend, I'll try values near the best pair (14, 14), adjusting them slightly towards the direction of other low-value pairs like (16, 15). Specifically, I'll move w slightly lower and keep b similar. So the next pair I suggest would be w=13 and b=14.\",\n\"weight_bias_pair\": [13,14]\n}",
+                "{\n  \"reasoning\": \"The function values decrease as w and b approach 14. Since (14,14) yielded 42747, I'll try values closer to that, such as (13,13), as they might lead to an even lower function value.\",\n  \"weight_bias_pair\": [\n    13,\n    13\n  ]\n}",
+                "{\n\"reasoning\": \"The function values are decreasing as w and b move towards the range of 14-16. Since 14, 14 has the lowest value so far, let's try a new pair close to it, and since the b values are less variable, and the value decreases as b increases from 10 to 15, let's try to explore higher value of b and a slightly lower value of w. Given the current minimum at w=14, b=14, let's try w=13 and b=16.\",\n\"weight_bias_pair\": [13, 16]\n}",
+                "{\n\"reasoning\": \"The function values decrease as we move from (20, 14) to (14, 14), suggesting the optimum is in the direction of decreasing w and keeping b in the 10-15 range.  I will try w=13 and b=13 as a starting point.\",\n\"weight_bias_pair\": [13,13]\n}",
+                "{\n\"reasoning\": \"The function values generally decrease as both w and b decrease, so I will try a pair with even smaller values than the pair with the lowest function value seen so far, which is (14, 14). I will pick a slightly smaller w and b value within range (-100, 100).\",\n\"weight_bias_pair\": [13,13]\n}"
+            ],
+            "1": [
+                "{\n\"reasoning\": \"The function values generally decrease as w and b approach the range of 13-15. The lowest function value occurs at w=15, b=13, however we are asked for a different pair. Given this trend, I will move the pair one step closer to the lowest value in w and b, so from (15, 13) to (16, 12). This assumes that the trend continues, and this pair is not in the input list and will likely result in a lower function value.\",\n\"weight_bias_pair\": [16, 12]\n}",
+                "{\n  \"reasoning\": \"The function value is decreasing as w and b get closer to 15 and 13 respectively. The lowest value is observed for w=15, b=13 with a value of 128. Let's explore the neighborhood around this point. Since 128 is already very low, it is likely that moving from 15,13 to an area near them will result in a smaller function value. Let's try moving w down slightly and b up slightly, to see if we can improve on it.\",\n  \"weight_bias_pair\": [\n    14,\n    14\n  ]\n}",
+                "{\n  \"reasoning\": \"The function values generally decrease as w and b approach the range of 13-16. The smallest function value seen was 128 at (15, 13). It is likely that the minimum is in that region. Trying (16,13) and (15,12) as alternatives.\",\n  \"weight_bias_pair\": [\n    15,\n    12\n  ]\n}",
+                "{\n\"reasoning\": \"The function values seem to be decreasing as w and b approach 15 and 13. The lowest value is at w=15 and b=13. Trying values close to the best point, we predict that the function value will continue to decrease at w=15 and b=12.\",\n\"weight_bias_pair\": [15,12]\n}",
+                "{\n  \"reasoning\": \"The function values generally decrease as w and b approach values close to 15 and 13 respectively. The lowest function value (128) is achieved at w=15 and b=13. Therefore, a pair close to these values may result in an even lower function value. Trying w=15 and b=14.\",\n  \"weight_bias_pair\": [\n    15,\n    14\n  ]\n}",
+                "{\n\"reasoning\": \"The function values generally decrease as w and b approach 15 and 13 respectively. The lowest value is 128 at w=15, b=13. I will pick a value nearby at w=15, b=12. It is different from all previous samples, and I predict it will have a lower value than the smallest value seen so far\",\n\"weight_bias_pair\": [\n15,\n12\n]\n}",
+                "{\n  \"reasoning\": \"The function value decreases as w and b get closer to 15 and 13 respectively based on the trend. The best pair we have so far is w=15, b=13 with a value of 128. I will try (15,12) which seems to be a good candidate.\",\n  \"weight_bias_pair\": [\n    15,\n    12\n  ]\n}",
+                "{\n  \"reasoning\": \"The function value seems to decrease as w and b approach 15 and 13, respectively. The lowest value was at w=15 and b=13. Based on this, I will try a point close to that to see if the value can be lowered further. Let's try w=15 and b=12.\",\n  \"weight_bias_pair\": [\n    15,\n    12\n  ]\n}"
+            ]
+        },
+        "old_value_pairs_with_i_step": [
+            [
+                12.0,
+                10.0,
+                417121.0114012443,
+                -1
+            ],
+            [
+                14.0,
+                14.0,
+                42747.81452256393,
+                -1
+            ],
+            [
+                16.0,
+                15.0,
+                45816.7854255775,
+                -1
+            ],
+            [
+                17.0,
+                12.0,
+                162275.46662239387,
+                -1
+            ],
+            [
+                20.0,
+                14.0,
+                1074396.8950132984,
+                -1
+            ],
+            [
+                13,
+                13,
+                176445.3570346728,
+                0
+            ],
+            [
+                13,
+                14,
+                171281.30110744148,
+                0
+            ],
+            [
+                13,
+                16,
+                161253.18925297886,
+                0
+            ],
+            [
+                15,
+                13,
+                128.38386491768412,
+                0
+            ],
+            [
+                14,
+                14,
+                42747.81452256393,
+                1
+            ],
+            [
+                15,
+                12,
+                292.43979214899366,
+                1
+            ],
+            [
+                15,
+                14,
+                64.32793768637458,
+                1
+            ],
+            [
+                16,
+                12,
+                38358.953207271436,
+                1
+            ]
+        ]
+    }
+}

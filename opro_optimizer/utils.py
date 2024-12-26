@@ -22,7 +22,7 @@ class NpEncoder(json.JSONEncoder):
 
 
 def call_gemini_api(
-    input_text, model="gemini-1.5-flash-002", max_decode_steps=20, temperature=0.8
+    input_text, model="gemini-2.0-flash-exp", max_decode_steps=20, temperature=0.8
 ):
   assert isinstance(input_text, str)
   try:
