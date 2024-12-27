@@ -13,8 +13,8 @@ def opro():
   pass
 
 def main(*args, **kwargs):
-  w_true = 25
-  b_true = 23
+  w_true = 2
+  b_true = 30
 
   # load LLM settings
   optimizer_llm_name = optimization_config["model"]
@@ -134,7 +134,10 @@ def main(*args, **kwargs):
       raw_outputs_dict[i_step] = raw_outputs
       parsed_outputs = []
       for output in raw_outputs:
-        json_output = json.loads(output)
+        try:
+          json_output = json.loads(output)
+        except json.JSONDecodeError:
+          continue
         if not i_step % 5:
           print("\n=================================================")
           print("raw output:\n", json_output)

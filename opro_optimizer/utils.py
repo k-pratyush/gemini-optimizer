@@ -1,10 +1,11 @@
 import time
 import json
+import torch
 from typing import List
 import numpy as np
 import google.generativeai as genai
-from settings import settings
 import typing_extensions as typing
+from transformers import AutoTokenizer, AutoModelForCausalLM
 
 class LinearRegressionSchema(typing.TypedDict):
   reasoning: str
@@ -18,6 +19,8 @@ class NpEncoder(json.JSONEncoder):
           return float(obj)
       if isinstance(obj, np.ndarray):
           return obj.tolist()
+      if isinstance(obj, set):
+        return list(obj)
       return super(NpEncoder, self).default(obj)
 
 
@@ -46,6 +49,26 @@ def call_gemini_api(
     print(f"Retrying in {retry_time} seconds...")
     time.sleep(retry_time)
     return call_gemini_api(
+        input_text, max_decode_steps=max_decode_steps, temperature=temperature
+    )
+  
+def call_hf_model(
+    input_text, tokenizer, model, max_decode_steps=20, temperature=0.8,
+):
+  assert isinstance(input_text, str)
+  try:
+    input_ids = tokenizer(input_text, return_tensors="pt").to(torch.device("mps"))
+
+    outputs = model.generate(**input_ids)
+    print(tokenizer.decode(outputs[0]))
+    return tokenizer.decode(outputs[0])
+
+  except Exception as e:
+    print(e)
+    retry_time = 65  # Adjust the retry time as needed
+    print(f"Retrying in {retry_time} seconds...")
+    time.sleep(retry_time)
+    return call_hf_model(
         input_text, max_decode_steps=max_decode_steps, temperature=temperature
     )
 

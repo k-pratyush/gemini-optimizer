@@ -11,7 +11,7 @@ class Settings():
     ROOT_PATH = Path(os.path.dirname(os.path.realpath(__file__))).parent.absolute()
 
     optimization_config = {
-        "temperature": 1.0,
+        "temperature": 1.5,
         "batch_size": 1,
         "num_servers": 1,
         "max_decode_steps": 1024,
@@ -27,10 +27,10 @@ class RegressionSettings(Settings):
         self.num_points = num_points
         self.num_reps = 5
         self.max_steps = 500
-        self.num_generated_points_in_each_step = 8
+        self.num_generated_points_in_each_step = 15
         self.num_input_decimals = 0
         self.num_output_decimals = 0
-        self.max_num_pairs = 20
+        self.max_num_pairs = 35
 
         # data
         np.random.seed(0)
