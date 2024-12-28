@@ -13,12 +13,12 @@ def opro():
   pass
 
 def main(*args, **kwargs):
-  w_true = 2
-  b_true = 30
+  w_true = 36
+  b_true = -1
 
   # load LLM settings
   optimizer_llm_name = optimization_config["model"]
-  reg = RegressionSettings(w_true=w_true, b_true=b_true, num_points=50)
+  reg = RegressionSettings(w_true=w_true, b_true=b_true, num_points=100)
 
   # create the result directory
   datetime_str = (
@@ -138,10 +138,6 @@ def main(*args, **kwargs):
           json_output = json.loads(output)
         except json.JSONDecodeError:
           continue
-        if not i_step % 5:
-          print("\n=================================================")
-          print("raw output:\n", json_output)
-          print("\n=================================================")
         try:
           parsed_output = json_output["weight_bias_pair"]
           if parsed_output is not None and len(parsed_output) == 2:

@@ -66,4 +66,54 @@ class RegressionSettings(Settings):
         return np.linalg.norm(residual) ** 2
 
 
+class NNSettings(Settings):
+    def __init__(self, num_layers=2, num_neurons_per_layer=[5,1]):
+        super().__init__()
+        self.num_points = 50
+        self.num_reps = 5
+        self.max_steps = 500
+        self.num_generated_points_in_each_step = 15
+        self.num_input_decimals = 2
+        self.num_output_decimals = 2
+        self.max_num_params = 35
+
+        # data
+        np.random.seed(0)
+        self.X = np.arange(self.num_points).astype(float) + 1
+        self.y = np.sin(self.X) + np.random.randn(self.num_points)
+
+    def get_training_data(self):
+        return self.X, self.y
+
+    def forward():
+        pass
+
+    def backward():
+        pass
+
+    def init_params(self,num_starting_points=5):
+        params = []
+        np.random.seed(42)
+        init_w = np.random.uniform(low=10, high=20, size=num_starting_points)
+        np.random.seed(54)
+        init_b = np.random.uniform(low=10, high=20, size=num_starting_points)
+
+        rounded_inits = [
+        (np.round(w, self.num_input_decimals), np.round(b, self.num_input_decimals))
+        for w, b in zip(init_w, init_b)
+        ]
+        rounded_inits = [
+            tuple(item) for item in list(np.unique(rounded_inits, axis=0))
+        ]
+        for w, b in rounded_inits:
+            z = NNSettings.evaluate_loss(self.X, self.y, w, b)
+            params.append((w, b, z))
+
+        return params
+
+    @staticmethod
+    def evaluate_loss(X, y, w, b):
+        residual = y - (np.sin(X * w + b))
+        return np.linalg.norm(residual) ** 2
+
 settings = Settings()
