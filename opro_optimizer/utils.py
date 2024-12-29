@@ -5,7 +5,6 @@ from typing import List
 import numpy as np
 import google.generativeai as genai
 import typing_extensions as typing
-from transformers import AutoTokenizer, AutoModelForCausalLM
 
 class LinearRegressionSchema(typing.TypedDict):
   reasoning: str

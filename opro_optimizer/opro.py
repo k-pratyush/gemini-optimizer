@@ -9,8 +9,6 @@ from settings import settings, RegressionSettings
 
 optimization_config = settings.optimization_config
 
-def opro():
-  pass
 
 def main(*args, **kwargs):
   w_true = 36
